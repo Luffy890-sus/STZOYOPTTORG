@@ -1,23 +1,34 @@
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
+import Sidebar from "../ponel/index"
 
 // img
 import svg_2 from "../../assets/svg/2.svg";
 
 // header
 
+
+
 const Header = () => {
+    const handleLogout = async () => {
+      try {
+        await signOut(auth);
+        console.log("Выход выполнен");
+      } catch (error) {
+        console.error("Ошибка выхода:", error);
+      }
+    };
   return (
     <>
      <div className="max-w-[1620px] m-auto">
       <div className="h-[45px]  pb-15 w-full flex items-center justify-between">
         <div className="ml-[15px]">
-          <button className="xl:hidden flex items-center gap-[13px]">
-           <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1H15M1 7H15M1 13H15" stroke="black" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-           </svg>
-           <p className="text-[15px] font-medium hidden sm:block">Меню</p>
-          </button>
+        <div className="xl:hidden flex items-center gap-[13px]">
+           <Sidebar onLogout={handleLogout} className=" lg:hidden" />
+           <div className="p-10">   
+           <p className="text-[15px] font-medium hidden sm:block ml-[20px]">Меню</p>
+           </div>
+         </div>
           <ul className="xl:flex gap-[30px] items-center max-w-[719px] hidden">
             <li><a href="" className="text-[14px] font-light text-[#6C6F71]">О компании</a></li>
             <li><a href="" className="text-[14px] font-light text-[#6C6F71]">Оплата</a></li>
@@ -32,9 +43,9 @@ const Header = () => {
         <div className="mr-[15px] flex gap-[13px] items-center">
           <p className="text-[13px] text-[#4E5760] font-medium hidden sm:block">Ежедневно, с 8:00 до 18:00</p>
           <a href="" className="font-medium">8 800 444 00 65</a>
-          <Button  style={{width: "142px", height: "32px", fontSize: "10px", background:"#F2F6FC", boxShadow: "none", color: "#2A5E8D", fontWeight: "700"}}variant="contained">
+          <Button  style={{zIndex: "-1", width: "142px", height: "32px", fontSize: "10px", background:"#F2F6FC", boxShadow: "none", color: "#2A5E8D", fontWeight: "700"}}variant="contained">
             Заказать звонок
-          </Button>
+          </Button> 
         </div>
       </div>
      </div>
@@ -46,7 +57,23 @@ const Header = () => {
         <Link to={"/"} >
           <img src={svg_2} alt="" className="sm:w-[215px]"/>
         </Link> 
-        <div className=""></div>
+        <div className="h-[65px] items-center hidden ml-[13px] mr-[13px] gap-[10px] xl:flex">
+        <Button  style={{zIndex: "-1", width: "154px", height: "52px", fontSize: "13px", background:"#186FD4", display: "flex", alignItems: "center", gap: "10px", boxShadow: "none", color: "#FFFFFF", fontWeight: "700"}}variant="contained">
+            <svg width="20" height="20" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1H19M1 7H19" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            Каталог 
+        </Button>
+
+        <div className="lg:w-[422px] 2xl:w-[722px] h-[52px] bg-[#186FD4] rounded-lg flex items-center">
+          <input type="text" placeholder="Поиск..." className="max-w-[660px] w-full h-[46px] bg-white ml-[3px] rounded-lg pl-[15px]"/>
+          <button className="ml-[12px] mr-[14px]">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 15L11.6167 11.6166M13.4444 7.22226C13.4444 10.6587 10.6586 13.4445 7.22221 13.4445C3.78578 13.4445 1 10.6587 1 7.22226C1 3.7858 3.78578 1 7.22221 1C10.6586 1 13.4444 3.7858 13.4444 7.22226Z" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
         <div className="flex gap-[6px] sm:gap-[27px] mr-[13px]">
           <button className="text-center text-[14px] text-[#6B7076] hidden sm:block">
             <svg className="ml-[20px]" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +113,23 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      <div className="h-[65px] items-center flex"></div>
+      <div className="h-[65px] items-center flex ml-[13px] mr-[13px] gap-[10px] xl:hidden">
+        <Button  style={{zIndex: "-1", width: "154px", height: "52px", fontSize: "13px", background:"#186FD4", display: "flex", alignItems: "center", gap: "10px", boxShadow: "none", color: "#FFFFFF", fontWeight: "700"}}variant="contained">
+            <svg width="20" height="20" viewBox="0 0 20 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1H19M1 7H19" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            Каталог 
+        </Button>
+
+        <div className="max-w-[722px] w-full h-[52px] bg-[#186FD4] rounded-lg flex items-center lg">
+          <input type="text" placeholder="Поиск..." className="max-w-[660px] w-full h-[46px] bg-white ml-[3px] rounded-lg pl-[15px]"/>
+          <button className="ml-[12px] mr-[14px]">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 15L11.6167 11.6166M13.4444 7.22226C13.4444 10.6587 10.6586 13.4445 7.22221 13.4445C3.78578 13.4445 1 10.6587 1 7.22226C1 3.7858 3.78578 1 7.22221 1C10.6586 1 13.4444 3.7858 13.4444 7.22226Z" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
      </div>
 
      <div className="w-full h-[1px] bg-[#F3F4F5] sm:hidden"></div>
